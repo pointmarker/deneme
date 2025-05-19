@@ -1,0 +1,31 @@
+id|title|budget_usd|posted_at|status
+1|Own education south run agree|6775|2025-05-17|open
+2|Many group|2988|2025-03-27|closed
+3|Leader medical class|1481|2025-04-12|closed
+4|Front sound war address|6699|2025-02-27|open
+5|Nearly with significant|1163|2025-03-07|open
+6|Energy rather lay return identify|6993|2025-02-21|open
+7|Again science|3347|2024-11-23|open
+8|Quite old simply|1052|2025-01-12|open
+9|Several might history|3018|2025-04-28|in_progress
+10|Decade not forget|1117|2025-05-15|closed
+11|Only result race|7047|2025-01-24|in_progress
+12|Trouble tonight former|1403|2025-04-11|in_progress
+13|Once anything|4815|2024-12-17|open
+14|Guy personal follow situation|4063|2025-03-13|closed
+15|Would a cell analysis|2841|2024-12-11|closed
+16|Upon we lose water|6643|2025-04-24|in_progress
+17|Section could nature|5230|2025-02-07|open
+18|Wear community college|1457|2025-03-24|open
+19|Often walk place|6934|2025-03-02|closed
+20|His itself find add sing|8755|2025-04-25|closed
+21|Watch Mrs never|5855|2025-01-22|in_progress
+22|Relationship it center|6357|2024-11-18|open
+23|Choice produce type none guess|2323|2024-11-24|open
+24|Treatment PM sometimes set tonight|9736|2025-01-26|in_progress
+25|Word citizen create great record|6042|2024-11-20|open
+26|Number drug continue|7170|2025-04-13|open
+27|Back large season last|3051|2025-02-23|open
+28|When clearly|6175|2025-05-15|in_progress
+29|Up play|4978|2025-05-18|open
+30|Education think similar|4013|2025-03-15|closed

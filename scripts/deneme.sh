@@ -25,9 +25,11 @@ menu(){
             local now=$(date)
             echo yes
             log $username "creates $username on users at $now"
+            USER_ID=$($PSQL "SELECT user_id FROM users WHERE username = '$username'")
         fi
     else
         echo -e "\nhoş geldin "$username"!\n" 
+        USER_ID=$($PSQL "SELECT user_id FROM users WHERE username = '$username'")
     fi
     history+=("menu")
     echo -e "1.Not yaz\n2.Notları gör\n3.Not sil\n4.Geri\n5.Çıkış\n"
@@ -54,37 +56,22 @@ go_back(){
         menu
     fi
 }
-log(){
-    local user=${1-}
-    local level=${2-}
-    local action=${3-}
-    local now = $(date)
-    local file=".logs/$user-log.json"
-
-    if [[ ! -f "$file" ]]
-    then
-        echo "[]" > "$file"
-    fi
-
-    head -c -1 "$file" > "${file}.tmp"
-
-    if [[ $(wc -c < "${file}.tmp") -le 2 ]]
-    then
-        echo -n "[{\"timestamp\":\"$now\",\"level\":\"$level\",\"action\":\"$action\",\"message\":\"$message\"}]" > "$file"
-    else 
-        echo -n ",{\"timestamp\":\"$now\",\"level\":\"$level\",\"action\":\"$action\",\"message\":\"$message\"}]" >> "${file}.tmp"
-        mv "${file}.tmp" "$file"
-    fi
-}
 add_note(){
     history+=("add_note")
     clear
     echo -e "notunuzu ekleyin:"
     read note
-    echo -e "\ngrubu var mı:"
+    echo -e "\ngrubu var mı: (maks 30 karakter)"
     read group
-    local now=$(date)
-    log $username "$now -- $group -- $note"
+    while [[ ${#group} -gt 30 ]]
+    do
+        echo -e "\n(maks 30 karakter,tekrar gir)"
+        read group
+    done
+    local level=""
+    local action="note_added"
+    LOG_ID=$($PSQL "INSERT INTO logs(user_id, log, log_group) VALUES($USER_ID,'$action','$level ) RETURNING log_id;")
+    NOTE_INSERT=$($PSQL "INSERT INTO notes(user_id, note, group_name,log_id) VALUES($USER_ID,'$NOTE','$group',$LOG_ID);")
     echo -e "başarılı!\n"
     alternate_menu
 }
@@ -107,6 +94,8 @@ alternate_menu(){
 
 see_notes(){
     history+=("see_notes")
+    groups=$($PSQL "SELECT group_name FROM notes WHERE user_id = '$USER_ID'")
+    echo $groups
     alternate_menu
 }
 delete_note(){
